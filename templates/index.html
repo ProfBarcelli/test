@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Test delibere</title>
+    </head>
+    <body>
+        <h1>Test delibere</h1>
+        Testo delibera:<br>
+        <textarea id="deliberaTextArea">ciao</textarea><br>
+        <button onclick="sendDelibera()">Invia delibera</button>
+        <button onclick="concludeVoting()">Fine votazione</button>
+        <hr>
+        <div id="deliberaDiv">
+            <h2 id="deliberaH2"></h2>
+            <button onclick="send('favorvole')">Favorevole</button>
+            <button onclick="send('contrario')">Contrario</button>
+            <button onclick="send('astenuto')">Astenuto</button>
+        </div>
+        <script src="https://cdn.socket.io/4.5.1/socket.io.min.js"></script>
+        <script>
+const socket = io();
+
+// receive a "foo" event from the server
+socket.on("new_delibera", (delibera) => {
+  console.log(delibera);
+});
+
+const deliberaTextArea = document.getElementById("deliberaTextArea");
+const sendDelibera = function() {
+    fetch("/nuovaDelibera",{
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({delibera: deliberaTextArea.value})
+    }).then(response => response.text()).then(txt => {
+        console.log(txt);
+    });
+};
+const concludeVoting = function() {
+    fetch("/fineVotazione").then(response => response.text()).then(txt => {
+        console.log(txt);
+    });
+};
+const send = function(what) {
+    fetch("http://localhost/test/index.php?what="+what,{
+        method: 'GET',  // You can also use 'POST', 'PUT', etc.
+        mode: 'no-cors',  // This is the key part to disable CORS
+    }).then(function(response) {
+        return response.text();
+    }).then(function(txt) {
+        console.log(txt);
+    });
+};
+        </script>
+    </body>
+</html>
