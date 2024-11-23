@@ -40,7 +40,7 @@ const concludeVoting = function() {
     });
 };
 const send = function(what) {
-    fetch("http://localhost/test/index.php?what="+what,{
+    fetch("http://localhost/test/voto.php?what="+what,{
         method: 'GET',  // You can also use 'POST', 'PUT', etc.
         mode: 'no-cors',  // This is the key part to disable CORS
     }).then(function(response) {

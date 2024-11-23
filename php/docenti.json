@@ -1,0 +1,5 @@
+{
+    "a": {"password":"aa", "nome":"Alessandro", "cognome":"Berti"},
+    "b": {"password":"bb", "nome":"Bianca", "cognome":"Bianchi"},
+    "c": {"password":"cc", "nome":"Carlo", "cognome":"Cantoni"}
+}

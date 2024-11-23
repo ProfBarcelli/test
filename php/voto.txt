@@ -1,0 +1,5 @@
+b,astenuto
+a,contrario
+c,contrario
+b,favorvole
+a,favorvole
